@@ -1,11 +1,12 @@
 # Tina Cabrera Beauty Salon — Propuesta web
 
-Propuesta de rediseño para [tinacbeautysalon.com](https://tinacbeautysalon.com/) con dos direcciones creativas:
+Propuesta de rediseño para [tinacbeautysalon.com](https://tinacbeautysalon.com/): una web blanca y sencilla, con scroll vertical tradicional, menú fijo y las fotos como protagonistas.
 
-- **Versión A · Exposición de color** (`propuesta/exposicion/`): el salón como una galería; el cursor pinta con pigmento (WebGL) y descubre los trabajos reales.
-- **Versión B · Revista de moda** (`propuesta/revista/`): la web como un número de revista, con páginas que se pasan al hacer scroll.
+- `propuesta/index.html`: la propuesta.
+- `propuesta/assets/`: logo y monograma de la marca.
+- `propuesta/v1/`: primera propuesta, descartada.
 
-`propuesta/index.html` es la portada para elegir versión. `propuesta/v1/` es una primera propuesta descartada.
+Las versiones anteriores "Exposición de color" y "Revista de moda" se descartaron; siguen en el historial de git (commit `abe52f2`).
 
 ## Ver en local
 
@@ -13,7 +14,7 @@ Propuesta de rediseño para [tinacbeautysalon.com](https://tinacbeautysalon.com/
 python -m http.server 8765 --directory propuesta
 ```
 
-Abre http://localhost:8765. El efecto de pintura necesita servirse por HTTP (no funciona abriendo el archivo con doble clic).
+Abre http://localhost:8765.
 
 ## Despliegue
 
