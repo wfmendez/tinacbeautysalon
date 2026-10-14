@@ -1,9 +1,17 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { BookBand, PhotoGrid, Reviews, SectionTitle, ServiceCards } from "@/components/Blocks";
+import { BookBand } from "@/components/Blocks";
 import { ArrowIcon, CalendarIcon } from "@/components/Icons";
-import Reveal from "@/components/Reveal";
-import { heroImage, works } from "@/lib/site";
+import { heroImage, salonPhotos, services, works } from "@/lib/site";
+import monogram from "@/public/brand/monogram-tc.png";
+
+// The home page is a front door: each tile opens its own page.
+const tiles: { href: string; label: string; text: string; image?: StaticImageData }[] = [
+  { href: "/servicios", label: "Servicios", text: "Peluquería, estética y depilación", image: services[0].image },
+  { href: "/trabajos", label: "Trabajos", text: "Resultados reales", image: works[1].image },
+  { href: "/salon", label: "El salón", text: "Conoce el espacio", image: salonPhotos[0].image },
+  { href: "/vales-regalo", label: "Vales regalo", text: "50 €, 100 € y 150 €" },
+];
 
 export default function HomePage() {
   return (
@@ -34,30 +42,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section>
-        <Reveal className="wrap">
-          <SectionTitle title="Servicios" />
-          <ServiceCards />
-        </Reveal>
-      </section>
-
       <section className="soft">
-        <Reveal className="wrap">
-          <SectionTitle title="Trabajos" />
-          <PhotoGrid photos={works} />
-          <div className="center">
-            <Link className="text-link" href="/trabajos">
-              Ver todos los trabajos <ArrowIcon />
+        <nav className="wrap tiles" aria-label="Secciones de la web">
+          {tiles.map((t) => (
+            <Link key={t.href} className="tile" href={t.href}>
+              <span className={t.image ? "ph" : "ph ph-brand"}>
+                {t.image ? (
+                  <Image src={t.image} alt="" fill sizes="(max-width: 760px) 46vw, 290px" placeholder="blur" />
+                ) : (
+                  <Image src={monogram} alt="" sizes="160px" className="tile-mark" />
+                )}
+              </span>
+              <span className="tile-name">
+                {t.label} <ArrowIcon />
+              </span>
+              <span className="tile-text">{t.text}</span>
             </Link>
-          </div>
-        </Reveal>
-      </section>
-
-      <section>
-        <Reveal className="wrap">
-          <SectionTitle title="Opiniones" />
-          <Reviews />
-        </Reveal>
+          ))}
+        </nav>
       </section>
 
       <BookBand />
